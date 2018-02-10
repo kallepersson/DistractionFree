@@ -1,0 +1,31 @@
+{
+  "name": "Distraction Free Mode for Google Docs",
+  "description" : "Provides a distraction free mode for web apps",
+  "version": "1.0",
+  "icons": {
+    "16": "img/icon-16.png",
+    "19": "img/icon-19.png",
+    "38": "img/icon-38.png",
+    "48": "img/icon-48.png",
+    "128": "img/icon-128.png",
+    "256": "img/icon-256.png"
+  },
+  "manifest_version": 2,
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://docs.google.com/*"
+      ],
+      "js": [
+        "contentscript.js"
+      ]
+    }
+  ]
+}
