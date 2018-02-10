@@ -1,6 +1,6 @@
 {
   "name": "Distraction Free Mode for Google Docs",
-  "description" : "Provides a distraction free mode for web apps",
+  "description" : "Adds a toolbar icon (▣) in Google Docs that turns on distraction free mode. It hides away all controls and buttons and lets you focus on the writing.",
   "version": "1.0",
   "icons": {
     "16": "img/icon-16.png",
