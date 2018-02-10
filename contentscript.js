@@ -1,7 +1,7 @@
 (function() {
 
   const _css = `
-    .kix-document-top-shadow-inner { 
+    .kix-document-top-shadow-inner, #docs-instant-button-bubble { 
       display: none;
 
     }
