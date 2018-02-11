@@ -3,11 +3,12 @@
   const _css = `
     .kix-document-top-shadow-inner, #docs-instant-button-bubble { 
       display: none;
-
     }
+
     #docs-chrome,
     #kix-ruler,
-    .docs-explore-widget {
+    .docs-explore-widget,
+    .docs-df-hidemenus .goog-menu-vertical {
      pointer-events: none;
      opacity: 0;
     }
@@ -21,7 +22,7 @@
      background: transparent;
      content: "";
      height: 125px;
-     z-index: 9999;
+     z-index: 999;
      pointer-events:none;
     }
 
@@ -30,7 +31,8 @@
 
     }
 
-    .gdocs-exit-mode-button {position: fixed;
+    .gdocs-exit-mode-button {
+      position: fixed;
       top: 0;
       left: 0;
       font-size: 22px;
@@ -39,12 +41,26 @@
       background: 0;
       opacity: 0.1;
       cursor: pointer;
-      z-index: 999999;
+      z-index: 1000;
 
     }
+
     .gdocs-exit-mode-button:hover {
      opacity: 0.8;
+    }
 
+    .gdocs-df-zoom-button {
+      position: fixed;
+      top: 5px;
+      left: 40px;
+      background: transparent;
+      opacity: 0.1;
+      border-radius: 5px;
+      z-index: 1000;
+    }
+
+    .gdocs-df-zoom-button:hover {
+      opacity: 0.8;
     }
 
     #docs-editor,
@@ -161,6 +177,11 @@
   _exitModeButtonElement.innerText = "←";
   _exitModeButtonElement.addEventListener("click", exitMode);
 
+  var _zoomSelectElement = document.createElement("button");
+  _zoomSelectElement.innerText = "Zoom";
+  _zoomSelectElement.className = "gdocs-df-zoom-button";
+  _zoomSelectElement.addEventListener("click", openZoomMenu);
+
   var _fadeElement = document.createElement("div");
   _fadeElement.className = "gdocs-df-fade"
   document.body.appendChild(_fadeElement);
@@ -169,12 +190,14 @@
     window.setTimeout(handleOnLoad, 250);
   });
 
-  function uncheckMenuItem(id) {
-    let element = document.getElementById(id);
+  function uncheckMenuItem(element) {
     if (!element.classList.contains("goog-option-selected")) {
       return;
     }
+    clickInterfaceElement(element);
+  }
 
+  function clickInterfaceElement(element) {
     var downEvent = document.createEvent("MouseEvents");
     downEvent.initEvent ("mousedown", true, true);
     var upEvent = document.createEvent("MouseEvents");
@@ -184,21 +207,24 @@
     element.dispatchEvent(upEvent);
   }
 
+  function $i(id) {
+    return document.getElementById(id);
+  }
+
   function enterMode() {
     // Uncheck "Print Mode" if not already unchecked
-    uncheckMenuItem(":8g");
-    switch (window.location.origin) {
-      case "https://docs.google.com":
-      document.head.appendChild(_styleElement);
-      document.body.appendChild(_exitModeButtonElement);
-      document.querySelector(".kix-appview-editor").style.height = "100vh";
-      break;
-    }
+    uncheckMenuItem($i(":8g"));
+    document.head.appendChild(_styleElement);
+    document.body.appendChild(_exitModeButtonElement);
+    document.body.appendChild(_zoomSelectElement);
+    _zoomSelectElement.value = document.querySelector("#zoomSelect input").value;
+    document.querySelector(".kix-appview-editor").style.height = "100vh";
   }
 
   function exitMode() {
     document.head.removeChild(_styleElement);
     _exitModeButtonElement.parentElement.removeChild(_exitModeButtonElement);
+    _zoomSelectElement.parentElement.removeChild(_zoomSelectElement);
   }
 
   function handleOnLoad() {
@@ -223,6 +249,18 @@
     _theme = theme;
     document.body.classList.remove("df-default", "df-dark", "df-sepia");
     document.body.classList.add("df-" + theme)
+  }
+
+  function openZoomMenu(evt) {
+    clickInterfaceElement($i("zoomSelect"));
+    let menus = Array.prototype.slice.call(document.querySelectorAll(".goog-menu-vertical"));
+    let menu = menus.reverse().find(function(elm) {
+      return elm.innerHTML.indexOf("100%") != -1;
+    })
+    if (menu) {
+      menu.style.left = "40px";
+      menu.style.top = "5px";
+    }
   }
 
   function handleKeyDown(evt) {
