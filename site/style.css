@@ -1,0 +1,173 @@
+body {
+	background: #eee;
+	color: #333;
+	margin: 0;
+	padding: 0 0 50px 0;
+	font: 14px 'Source Sans Pro', sans-serif;
+}
+
+header {
+	background: #4285f4;
+	border-bottom: 1px solid #888;
+	outline: 1px solid #fff;
+	height: 155px;
+}
+
+a {
+	color: #0651AB;
+	text-decoration: none;
+}
+
+a:hover {
+	border-bottom: 1px solid #0651AB;
+}
+
+
+div.headerWrapper {
+	width: 75%;
+	margin: 0 auto;
+	min-width: 600px;
+	max-width: 1044px;
+	overflow: hidden;
+}
+
+div.left {
+	float: left;
+	min-width: 600px;
+}
+
+div.left img {
+	float: left;
+	display: block;
+	margin: 10px 15px 10px 0;
+	width: 68px;
+}
+
+div.right {
+	float: right;
+	min-width: 140px;
+	overflow: hidden;
+}
+
+h1 {
+	font-size: 27px;
+	letter-spacing: -1.5px;
+	margin: 0;
+	padding: 20px 0 0px 0;
+	width: 100%;
+	color: #fff;
+	text-shadow: 0px 1px 2px #144EE5;
+}
+
+.tagline {
+	display: block;
+	color: #fff;
+	font-size: 15px;
+	text-shadow: 0px 1px 2px #144EE5;
+}
+
+a.download {
+	float: right;
+	text-align: center;
+	margin: 14px 0 0 0;
+	padding: 12px 30px;
+	display: block;
+	letter-spacing: -0.2px;
+	font-size: 14px;
+	border-radius: 4px;
+	border: 2px solid #fff;
+	color: #fff;
+}
+
+a.download strong {
+	display: block;
+	font-size: 16px;
+}
+
+a.download:hover {
+	color: #0651AB;
+	border-color: #0651AB;
+}
+
+p {
+	font-size: 14px;
+	margin: 0 0 14px 0;
+}
+
+h2 {
+	font-weight: normal;
+	padding: 0 10px;
+	text-align: center;
+}
+
+article {
+	width: 60%;
+	margin: 20px auto;
+	overflow: hidden;
+	font-size: 14px;
+	text-align: left;
+}
+
+article div {
+	float: left;
+	width: 45%;
+}
+
+article img {
+	max-width: 100%;
+}
+
+article div:nth-child(2) {
+	float: right;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	border-top: 1px solid #ccc;
+}
+
+tr {
+	border-bottom: 1px solid #ccc;
+}
+
+th, td {
+	padding: 5px;
+}
+
+th {
+	font-weight: normal;
+	width: 40%;
+	padding-right: 15px;
+}
+
+td {
+	color: #888;
+}
+
+td code {
+	color: #000;
+	font-family: Courier, monospace;
+	background: #fff;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 2px 4px;
+}
+
+.policy p {
+	text-align: left;
+}
+video {
+	width: 75%;
+	max-width: 1044px;
+	display: block;
+	margin: -60px auto 25px auto;
+	vertical-align: middle;
+	background: #111;
+	border-radius: 2px;
+	box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
+}
+
+.center {
+	text-align: center;
+}
