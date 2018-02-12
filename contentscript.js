@@ -88,7 +88,7 @@
 
     }
     .df-default .gdocs-df-fade {
-     background: -webkit-linear-gradient(top, rgba(238,238,238,1) 85%,rgba(238,238,238,0) 100%);
+     background: -webkit-linear-gradient(top, rgba(238,238,238,1) 85%, rgba(238,238,238,0) 100%);
 
     }
     .df-default .kix-selection-overlay {
@@ -101,6 +101,10 @@
     .df-dark #docs-editor-container {
      background: #000!important;
 
+    }
+
+    .df-dark .kix-cursor-caret {
+      border-color: #fff!important;
     }
 
     .df-dark .gdocs-exit-mode-button, .df-dark .kix-wordhtmlgenerator-word-node, .df-dark .kix-lineview-text-block {
@@ -134,6 +138,10 @@
     }
     .df-sepia .gdocs-exit-mode-button, .df-sepia .kix-wordhtmlgenerator-word-node, .df-sepia .goog-inline-block kix-lineview-text-block {
      color: #644F48!important;
+    }
+
+    .df-sepia .kix-cursor-caret {
+      border-color: #644F48!important;
     }
 
     .df-sepia .gdocs-df-fade {
@@ -214,6 +222,7 @@
   function enterMode() {
     // Uncheck "Print Mode" if not already unchecked
     uncheckMenuItem($i(":8g"));
+
     document.head.appendChild(_styleElement);
     document.body.appendChild(_exitModeButtonElement);
     document.body.appendChild(_zoomSelectElement);
@@ -231,7 +240,9 @@
     let containerElement = document.querySelector(_containerSelector);
     let starElement = document.querySelector(_starSelector);
     if (containerElement && starElement) {
-      containerElement.insertBefore(_toolbarButtonContainer, starElement.nextSibling);
+      setTimeout(function() {
+        containerElement.insertBefore(_toolbarButtonContainer, starElement.nextSibling);
+      }, 500)
     }
 
     chrome.storage.sync.get({
