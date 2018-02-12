@@ -70,7 +70,7 @@ a.download {
 	float: right;
 	text-align: center;
 	margin: 14px 0 0 0;
-	padding: 12px 30px;
+	padding: 8px 30px;
 	display: block;
 	letter-spacing: -0.2px;
 	font-size: 14px;
@@ -82,6 +82,12 @@ a.download {
 a.download strong {
 	display: block;
 	font-size: 16px;
+}
+
+a.download em {
+	display: block;
+	font-size: 10px;
+	opacity: 0.8;
 }
 
 a.download:hover {
