@@ -5,6 +5,10 @@
       display: none;
     }
 
+    .docs-slidingdialog-holder {
+      z-index: 1000;
+    }
+
     #docs-chrome,
     #kix-ruler,
     .docs-explore-widget,
@@ -63,6 +67,7 @@
       opacity: 0.8;
     }
 
+    #docs-chrome,
     #docs-editor,
     .kix-page,
     .docs-ui-unprintable,
@@ -154,7 +159,6 @@
     }
   `;
 
-  var _site;
   var _containerSelector = ".docs-titlebar-badges"
   var _starSelector = ".docs-star-container"
   var _theme = "default";
