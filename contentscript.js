@@ -58,7 +58,7 @@
       top: 5px;
       left: 40px;
       background: transparent;
-      opacity: 0.1;
+      opacity: 0.2;
       border-radius: 5px;
       z-index: 1000;
     }
@@ -112,7 +112,7 @@
       border-color: #fff!important;
     }
 
-    .df-dark .gdocs-exit-mode-button, .df-dark .kix-wordhtmlgenerator-word-node, .df-dark .kix-lineview-text-block {
+    .df-dark .gdocs-exit-mode-button, .df-dark .kix-wordhtmlgenerator-word-node, .df-dark .kix-lineview-text-block, .gdocs-df-zoom-button {
      color: #fff!important;
     }
 
