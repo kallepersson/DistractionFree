@@ -196,11 +196,6 @@
 
   var _fadeElement = document.createElement("div");
   _fadeElement.className = "gdocs-df-fade"
-  document.body.appendChild(_fadeElement);
-
-  window.addEventListener('hashchange', function() {
-    window.setTimeout(handleOnLoad, 250);
-  });
 
   function uncheckMenuItem(element) {
     if (!element.classList.contains("goog-option-selected")) {
@@ -241,6 +236,7 @@
   }
 
   function handleOnLoad() {
+    document.body.appendChild(_fadeElement);
     let containerElement = document.querySelector(_containerSelector);
     let starElement = document.querySelector(_starSelector);
     if (containerElement && starElement) {
@@ -249,15 +245,17 @@
       }, 500)
     }
 
-    chrome.storage.sync.get({
-      theme: 'default'
-    }, function(items) {
-      setTheme(items.theme);
-    });
+    if (chrome) {
+      chrome.storage.sync.get({
+        theme: 'default'
+      }, function(items) {
+        setTheme(items.theme);
+      });
 
-    chrome.storage.onChanged.addListener(function(changes, namespace) {
-      setTheme(changes.theme.newValue);
-    });
+      chrome.storage.onChanged.addListener(function(changes, namespace) {
+        setTheme(changes.theme.newValue);
+      });
+    }
   }
 
   function setTheme(theme) {
@@ -283,7 +281,6 @@
       exitMode()
     }
   }
-
-  handleOnLoad();
-
+  
+  document.addEventListener("DOMContentLoaded", handleOnLoad);
 })();
