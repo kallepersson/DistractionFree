@@ -16,6 +16,22 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>Chrome</key>
+	<dict>
+		<key>Bars</key>
+		<array>
+			<dict>
+				<key>Filename</key>
+				<string>bar.html</string>
+				<key>Identifier</key>
+				<string>bar</string>
+				<key>Label</key>
+				<string>Bar</string>
+			</dict>
+		</array>
+		<key>Global Page</key>
+		<string>bar.html</string>
+	</dict>
 	<key>Content</key>
 	<dict>
 		<key>Scripts</key>

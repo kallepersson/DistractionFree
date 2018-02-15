@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<script type="text/javascript">
+
+safari.self.browserWindow.addEventListener("message", function(event) {
+	if (event.name == "forceRelayout") {
+		window.resizeBy(-1, 0);
+		window.resizeBy(1, 0);
+	}
+},false);
+
+</script>
+</head>
+</body>
+</html>

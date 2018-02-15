@@ -20,6 +20,10 @@
   "permissions": [
     "storage"
   ],
+  "background": {
+    "persistent": true,
+    "scripts": ["bg.js"]
+  },
   "content_scripts": [
     {
       "matches": [
