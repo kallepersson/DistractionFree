@@ -241,6 +241,14 @@
     return document.getElementById(id);
   }
 
+  function forceRelayout() {
+    if (typeof chrome != "undefined") {
+      chrome.extension.sendMessage({ msg: "forceRelayout" });
+    } else if (typeof safari != "undefined") {
+      safari.self.tab.dispatchMessage("forceRelayout");
+    }
+  }
+
   function enterMode() {
     // Uncheck "Print Mode" if not already unchecked
     uncheckMenuItem($i(":8g"));
@@ -249,17 +257,14 @@
     document.body.appendChild(_zoomSelectElement);
     _zoomSelectElement.value = document.querySelector("#zoomSelect input").value;
     document.querySelector(".kix-appview-editor").style.height = "100vh";
-    if (typeof chrome != "undefined") {
-      chrome.extension.sendMessage({ msg: "forceRelayout" });
-    } else if (typeof safari != "undefined") {
-      safari.self.tab.dispatchMessage("forceRelayout");
-    }
+    forceRelayout();
   }
 
   function exitMode() {
     document.head.removeChild(_styleElement);
     _exitModeButtonElement.parentElement.removeChild(_exitModeButtonElement);
     _zoomSelectElement.parentElement.removeChild(_zoomSelectElement);
+    forceRelayout();
   }
 
   function handleOnLoad() {
