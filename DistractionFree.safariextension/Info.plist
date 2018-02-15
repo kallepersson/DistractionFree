@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Author</key>
+	<string>Kalle Persson</string>
+	<key>Builder Version</key>
+	<string>13604.5.6</string>
+	<key>CFBundleDisplayName</key>
+	<string>DistractionFree</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.kallepersson.distractionfree</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>Start</key>
+			<array>
+				<string>sdf.js</string>
+			</array>
+		</dict>
+	</dict>
+	<key>Description</key>
+	<string>The distraction free mode (▣) for Google Docs hides all interface, letting you focus on the writing.</string>
+	<key>DeveloperIdentifier</key>
+	<string>BBWY83BGU8</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Allowed Domains</key>
+			<array>
+				<string>docs.google.com</string>
+			</array>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>Some</string>
+		</dict>
+	</dict>
+	<key>Website</key>
+	<string>http://kallepersson.se/distractionfree</string>
+</dict>
+</plist>
