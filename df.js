@@ -17,8 +17,8 @@
      opacity: 0;
     }
 
-    body {
-      transform: translateY(-97px);
+    #docs-chrome {
+      display: none;
     }
 
     .gdocs-df-fade {
@@ -29,7 +29,7 @@
      right: 0;
      background: transparent;
      content: "";
-     height: 125px;
+     height: 25px;
      z-index: 999;
      pointer-events:none;
     }
@@ -41,7 +41,7 @@
     .gdocs-exit-mode-button,
     .gdocs-df-zoom-button {
       position: fixed;
-      top: 97px;
+      top: 0;
       left: 0;
       font-size: 22px;
       line-height: 25px;
@@ -59,7 +59,7 @@
     }
 
     .gdocs-df-zoom-button {
-      top: 103px;
+      top: 5px;
       left: 40px;
       font-size: 12px;
       line-height: 12px;
@@ -238,12 +238,16 @@
   function enterMode() {
     // Uncheck "Print Mode" if not already unchecked
     uncheckMenuItem($i(":8g"));
-
     document.head.appendChild(_styleElement);
     document.body.appendChild(_exitModeButtonElement);
     document.body.appendChild(_zoomSelectElement);
     _zoomSelectElement.value = document.querySelector("#zoomSelect input").value;
     document.querySelector(".kix-appview-editor").style.height = "100vh";
+    if (typeof chrome != "undefined") {
+      chrome.extension.sendMessage({ msg: "forceRelayout" });
+    } else if (typeof safari != "undefined") {
+      safari.self.tab.dispatchMessage("forceRelayout");
+    }
   }
 
   function exitMode() {
@@ -272,7 +276,7 @@
       chrome.storage.onChanged.addListener(function(changes, namespace) {
         setTheme(changes.theme.newValue);
       });
-    } else if (typeof safari !== "undefined") {
+    } else if (false && typeof safari !== "undefined") {
       setTheme(safari.extension.settings.theme || _theme);
       safari.extension.settings.addEventListener("change", function(event){
         if (event.key == "theme") {
@@ -299,7 +303,7 @@
     })
     if (menu) {
       menu.style.left = "40px";
-      menu.style.top = "103px";
+      menu.style.top = "5px";
     }
   }
 
