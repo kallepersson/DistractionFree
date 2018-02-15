@@ -1,6 +1,12 @@
 (function() {
 
   const _css = `
+
+    body:-webkit-full-screen {
+      width: 100%;
+      height: 100%;
+    }
+
     .kix-document-top-shadow-inner, #docs-instant-button-bubble { 
       display: none;
     }
@@ -311,6 +317,22 @@
     if (evt.keyCode == 27) {
       exitMode()
     }
+  }
+
+  function enterFullScreen() {
+    if (document.body.webkitRequestFullScreen) {
+      document.body.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+    } else if (document.body.mozRequestFullScreen) {
+      document.body.mozRequestFullScreen();
+    }
+  }
+
+  function exitFullScreen() {
+   if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } 
   }
   
   document.addEventListener("DOMContentLoaded", handleOnLoad);
