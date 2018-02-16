@@ -13,13 +13,6 @@
     "256": "img/icon-256.png"
   },
   "manifest_version": 2,
-  "options_ui": {
-    "page": "options.html",
-    "chrome_style": true
-  },
-  "permissions": [
-    "storage"
-  ],
   "background": {
     "scripts": ["chrome-bg.js"]
   },
