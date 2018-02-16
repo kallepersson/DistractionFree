@@ -16,8 +16,11 @@
 				<img class="logo" src="img/logo.png">
 				<span class="tagline">Distraction Free Mode for <strong>Google Docs</strong></span>
 
-				<a href="https://chrome.google.com/webstore/detail/distraction-free-mode-for/blmejkgbnceohgjfnoiegdlbfkmpkeha" class="download">Download for Chrome</a>
-				<p class="soon"><em>Safari &amp; Firefox versions coming soon!</em></p>
+				<a href="https://chrome.google.com/webstore/detail/distraction-free-mode-for/blmejkgbnceohgjfnoiegdlbfkmpkeha" class="download download-chrome">Download for Chrome</a>
+
+				<a href="https://chrome.google.com/webstore/detail/distraction-free-mode-for/blmejkgbnceohgjfnoiegdlbfkmpkeha" class="download download-safari">Download for Safari</a>
+
+				<a href="https://addons.mozilla.org/en-US/developers/addon/distraction-free-google-docs" class="download download-firefox">Download for Firefox</a>
 
 			</div>
 
@@ -78,6 +81,18 @@
 
 		ga('create', 'UA-29206053-1', 'kallepersson.se');
 		ga('send', 'pageview');
+	</script>
+
+	<script type="text/javascript">
+		["Chrome", "Safari", "Firefox"].forEach(function(item) {
+			if (navigator.userAgent.indexOf(item) != -1) {
+				if (item == "Safari" && document.body.classList.contains("chrome")) {
+					return;
+				}
+
+				document.body.classList.add(item.toLowerCase());
+			}
+		})
 	</script>
 
 </body>

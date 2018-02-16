@@ -82,7 +82,6 @@ a.download {
 	margin: 25px 0;
 	padding: 14px 30px;
 	text-transform: uppercase;
-	display: block;
 	letter-spacing: -0.3px;
 	font-size: 18px;
     background-image: linear-gradient(-180deg, rgba(73,155,234,1) 0,rgba(32,124,229,1) 100%);
@@ -91,6 +90,13 @@ a.download {
     font-weight: bold;
     color: #fff;
     border-radius: 15px;
+    display: none;
+}
+
+.chrome .download-chrome,
+.safari .download-safari,
+.firefox .download-firefox {
+	display: block;
 }
 
 a.download strong {
