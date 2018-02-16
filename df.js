@@ -242,11 +242,13 @@
   }
 
   function forceRelayout() {
-    if (typeof chrome != "undefined") {
+    if (typeof browser != "undefined") {
+      browser.runtime.sendMessage({ msg: "forceRelayout" });
+    } else if (typeof chrome != "undefined") {
       chrome.extension.sendMessage({ msg: "forceRelayout" });
     } else if (typeof safari != "undefined") {
       safari.self.tab.dispatchMessage("forceRelayout");
-    }
+    } 
   }
 
   function enterMode() {

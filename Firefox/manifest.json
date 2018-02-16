@@ -21,8 +21,7 @@
     "storage"
   ],
   "background": {
-    "persistent": true,
-    "scripts": ["bg.js"]
+    "scripts": ["firefox-bg.js"]
   },
   "content_scripts": [
     {
@@ -30,7 +29,7 @@
         "https://docs.google.com/*"
       ],
       "js": [
-        "df.js"
+        "firefox-df.js"
       ]
     }
   ]

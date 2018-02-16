@@ -1,3 +1,7 @@
 .DS_Store
 release.zip
-DistractionFree.safariextension/sdf.js
+DistractionFree.safariextension/safari-df.js
+Chrome/chrome-df.js
+Firefox/firefox-df.js
+Chrome/img
+Firefox/img

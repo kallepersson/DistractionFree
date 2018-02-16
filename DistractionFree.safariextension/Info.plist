@@ -22,7 +22,7 @@
 		<array>
 			<dict>
 				<key>Filename</key>
-				<string>bar.html</string>
+				<string>safari-bg.html</string>
 				<key>Identifier</key>
 				<string>bar</string>
 				<key>Label</key>
@@ -30,7 +30,7 @@
 			</dict>
 		</array>
 		<key>Global Page</key>
-		<string>bar.html</string>
+		<string>safari-bg.html</string>
 	</dict>
 	<key>Content</key>
 	<dict>
@@ -38,7 +38,7 @@
 		<dict>
 			<key>Start</key>
 			<array>
-				<string>sdf.js</string>
+				<string>safari-df.js</string>
 			</array>
 		</dict>
 	</dict>
