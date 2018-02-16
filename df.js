@@ -15,6 +15,40 @@
       z-index: 1000;
     }
 
+    #df-menu {
+      top: 30px;
+      left: 5px;
+      display: none;
+    }
+
+    #df-menu-button {
+      position: fixed;
+      font-family: arial, sans-serif;
+      top: 0;
+      left: 0;
+      font-size: 22px;
+      line-height: 30px;
+      background: transparent;
+      border: 0;
+      opacity: 0.2;
+      cursor: pointer;
+      z-index: 1000;
+      color: #000;
+      outline: 0;
+    }
+    
+    #df-menu-button:hover {
+     opacity: 0.5;
+    }
+
+    #df-menu .goog-menuitem-content {
+      pointer-events: none;
+    }
+
+    #df-menu .goog-menuitem:hover {
+      background: #eee;
+    }
+
     #docs-chrome,
     #kix-ruler,
     .docs-explore-widget,
@@ -44,37 +78,6 @@
      border: 0;
     }
 
-    .gdocs-exit-mode-button,
-    .gdocs-df-zoom-button {
-      position: fixed;
-      top: 0;
-      left: 0;
-      font-size: 22px;
-      line-height: 25px;
-      background: transparent;
-      border: 0;
-      opacity: 0.2;
-      cursor: pointer;
-      z-index: 1000;
-      color: #000;
-    }
-    
-    .gdocs-exit-mode-button:hover,
-    .gdocs-df-zoom-button:hover {
-     opacity: 0.8;
-    }
-
-    .gdocs-df-zoom-button {
-      top: 5px;
-      left: 40px;
-      font-size: 12px;
-      line-height: 12px;
-    }
-
-    .gdocs-df-zoom-button:hover {
-      opacity: 0.8;
-    }
-
     #docs-chrome,
     #docs-editor,
     .kix-page,
@@ -100,8 +103,7 @@
      background: #eee!important;
     }
 
-    .df-default .gdocs-exit-mode-button,
-    .df-default .gdocs-df-zoom-button {
+    .df-default #df-menu-button {
      color: #000!important;
     }
 
@@ -129,8 +131,7 @@
       border-color: #fff!important;
     }
 
-    .df-dark .gdocs-exit-mode-button,
-    .df-dark .gdocs-df-zoom-button,
+    .df-dark #df-menu-button,
     .df-dark .kix-wordhtmlgenerator-word-node,
     .df-dark .kix-lineview-text-block {
      color: #fff!important;
@@ -161,8 +162,7 @@
      background: rgba(244,236,217,1)!important;
 
     }
-    .df-sepia .gdocs-exit-mode-button,
-    .df-sepia .gdocs-df-zoom-button,
+    .df-sepia #df-menu-button,
     .df-sepia .kix-wordhtmlgenerator-word-node,
     .df-sepia .goog-inline-block kix-lineview-text-block {
      color: #644F48!important;
@@ -191,14 +191,44 @@
 
   var _toolbarButtonContainer = document.createElement("div");
   _toolbarButtonContainer.className = "goog-inline-block";
-  _toolbarButtonContainer
 
-  var _enterModeButton = document.createElement("button");
+  var _menuButtonElement = document.createElement("button");
+  _menuButtonElement.id = "df-menu-button"
+  _menuButtonElement.innerText = "▣";
+  _menuButtonElement.addEventListener("click", openMenu);
+
+  var _menu = document.createElement("div");
+  _menu.id = "df-menu";
+  _menu.className = "goog-menu goog-menu-vertical goog-menu-noicon goog-menu-noaccel";
+  _menu.innerHTML = `
+
+  <div class="goog-menuitem" role="option" id="df-mi-exit" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Exit</div></div>
+  <div class="goog-menuitem" role="option" id="df-mi-zoom" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Set Zoom</div></div>
+  <div class="goog-menuseparator" role="separator" aria-disabled="true" id=":1n" style="user-select: none;"></div>
+  <div class="goog-menuitem" role="option" id="df-mi-default" data-theme="default" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Default mode</div></div>
+  <div class="goog-menuitem" role="option" id="df-mi-dark" data-theme="dark" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Dark mode</div></div>
+  <div class="goog-menuitem" role="option" id="df-mi-sepia" data-theme="sepia" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Sepia mode</div></div>
+  `;
+
+  _menu.querySelector("#df-mi-zoom").addEventListener("click", openZoomMenu);
+  _menu.querySelector("#df-mi-exit").addEventListener("click", exitMode);
+  _menu.querySelector("#df-mi-default").addEventListener("click", handleThemeMenuItemClick);
+  _menu.querySelector("#df-mi-dark").addEventListener("click", handleThemeMenuItemClick);
+  _menu.querySelector("#df-mi-sepia").addEventListener("click", handleThemeMenuItemClick);
+
+  var _enterModeButton = document.createElement("div");
   _toolbarButtonContainer.appendChild(_enterModeButton);
-  _enterModeButton.className = "docs-toggle-df goog-inline-block"
+  _enterModeButton.style = `
+    background: transparent;
+    border: 0;
+    font-size: 22px;
+    opacity: 0.8;
+    color: #737373;
+    cursor: pointer;
+  `;
+  _enterModeButton.className = "goog-inline-block"
   _enterModeButton.innerText = "▣";
   _enterModeButton.dataset.tooltip = "Enter distraction free mode";
-  _enterModeButton.style = `background: transparent; border: 0; font-size: 22px; opacity: 0.8; color: #737373; cursor: pointer`
   _enterModeButton.addEventListener("mouseover", function() {
     this.style.opacity = 1;
   });
@@ -207,18 +237,23 @@
   });
   _enterModeButton.addEventListener("click", enterMode);
 
-  var _exitModeButtonElement = document.createElement("button");
-  _exitModeButtonElement.className = "gdocs-exit-mode-button"
-  _exitModeButtonElement.innerText = "←";
-  _exitModeButtonElement.addEventListener("click", exitMode);
-
-  var _zoomSelectElement = document.createElement("button");
-  _zoomSelectElement.innerText = "Zoom";
-  _zoomSelectElement.className = "gdocs-df-zoom-button";
-  _zoomSelectElement.addEventListener("click", openZoomMenu);
-
   var _fadeElement = document.createElement("div");
   _fadeElement.className = "gdocs-df-fade"
+
+  function openMenu(evt) {
+    _menu.style.display = "block";
+  }
+
+  function closeMenu(evt) {
+    if (evt.target.id == "df-menu-button") {
+      return;
+    }
+   _menu.style.display = "none";
+  }
+
+  function handleThemeMenuItemClick(evt) {
+    setTheme(evt.target.dataset.theme);
+  }
 
   function uncheckMenuItem(element) {
     if (!element.classList.contains("goog-option-selected")) {
@@ -255,22 +290,22 @@
     // Uncheck "Print Mode" if not already unchecked
     uncheckMenuItem($i(":8g"));
     document.head.appendChild(_styleElement);
-    document.body.appendChild(_exitModeButtonElement);
-    document.body.appendChild(_zoomSelectElement);
-    _zoomSelectElement.value = document.querySelector("#zoomSelect input").value;
+    document.body.appendChild(_menuButtonElement);
+    document.body.appendChild(_menu);
     document.querySelector(".kix-appview-editor").style.height = "100vh";
     forceRelayout();
   }
 
   function exitMode() {
     document.head.removeChild(_styleElement);
-    _exitModeButtonElement.parentElement.removeChild(_exitModeButtonElement);
-    _zoomSelectElement.parentElement.removeChild(_zoomSelectElement);
+    _menuButtonElement.parentElement.removeChild(_menuButtonElement);
+    _menu.parentElement.removeChild(_menu);
     forceRelayout();
   }
 
   function handleOnLoad() {
     document.body.appendChild(_fadeElement);
+    document.body.addEventListener("click", closeMenu);
     let containerElement = document.querySelector(_containerSelector);
     let starElement = document.querySelector(_starSelector);
     if (containerElement && starElement && window.location.href.indexOf("document") != -1) {
@@ -279,33 +314,14 @@
       }, 500)
     }
 
-    if (typeof chrome !== "undefined") {
-      chrome.storage.sync.get({
-        theme: _theme
-      }, function(items) {
-        setTheme(items.theme);
-      });
-
-      chrome.storage.onChanged.addListener(function(changes, namespace) {
-        setTheme(changes.theme.newValue);
-      });
-    } else if (false && typeof safari !== "undefined") {
-      setTheme(safari.extension.settings.theme || _theme);
-      safari.extension.settings.addEventListener("change", function(event){
-        if (event.key == "theme") {
-          setTheme(event.newValue);
-        }
-      }, false);
-    } else {
-      // Set default theme until settings are implemented
-      setTheme(_theme);
-    }
+    setTheme(localStorage.getItem("df-theme", "default"));
   }
 
   function setTheme(theme) {
     _theme = theme;
     document.body.classList.remove("df-default", "df-dark", "df-sepia");
     document.body.classList.add("df-" + theme)
+    localStorage.setItem("df-theme", theme);
   }
 
   function openZoomMenu(evt) {
@@ -315,7 +331,7 @@
       return elm.innerHTML.indexOf("100%") != -1;
     })
     if (menu) {
-      menu.style.left = "40px";
+      menu.style.left = "5px";
       menu.style.top = "5px";
     }
   }
