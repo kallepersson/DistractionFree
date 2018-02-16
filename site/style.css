@@ -7,10 +7,9 @@ body {
 }
 
 header {
-	background: #4285f4;
+	background: #ccc;
 	border-bottom: 1px solid #888;
-	outline: 1px solid #fff;
-	height: 155px;
+	outline: 1px solid #fff;	
 }
 
 a {
@@ -22,31 +21,39 @@ a:hover {
 	border-bottom: 1px solid #0651AB;
 }
 
-
 div.headerWrapper {
 	width: 75%;
+	height: 450px;
 	margin: 0 auto;
 	min-width: 600px;
 	max-width: 1044px;
-	overflow: hidden;
+	position: relative;
+	padding-top: 125px;
+	box-sizing: border-box;
 }
 
-div.left {
-	float: left;
-	min-width: 400px;
+#videoWrapper {
+	width: calc(0.6*926px);
+	height: calc(0.6*578px);
+	background: transparent url("img/mac.png") no-repeat;
+	background-size: cover;
+	position: absolute;
+	top: 100px;
+	right: 0;
 }
 
-div.left img {
-	float: left;
+video {
+	position: absolute;
+	width: calc(0.6*715px);
+	top: calc(0.6*25px);
+	left: calc(0.6*105px);
 	display: block;
-	margin: 10px 15px 10px 0;
-	width: 68px;
+	background: #111;
+	border-radius: 4px;
 }
 
-div.right {
-	float: right;
-	min-width: 140px;
-	overflow: hidden;
+div.left {	
+	width: 300px;
 }
 
 h1 {
@@ -55,28 +62,35 @@ h1 {
 	margin: 0;
 	padding: 20px 0 0px 0;
 	width: 100%;
-	color: #fff;
-	text-shadow: 0px 1px 2px #144EE5;
+	color: #222;
 }
 
-.tagline {
+img.logo {
+	margin: 10px 0;
 	display: block;
-	color: #fff;
-	font-size: 15px;
-	text-shadow: 0px 1px 2px #144EE5;
+}
+
+p.tagline {
+	display: block;
+	color: rgba(0,0,0,0.8);
+	font-size: 18px;
 }
 
 a.download {
-	float: right;
+	box-sizing: border-box;
 	text-align: center;
-	margin: 14px 0 0 0;
+	margin: 25px 0;
 	padding: 14px 30px;
+	text-transform: uppercase;
 	display: block;
-	letter-spacing: -0.2px;
-	font-size: 14px;
-	border-radius: 4px;
-	border: 2px solid #fff;
-	color: #fff;
+	letter-spacing: -0.3px;
+	font-size: 18px;
+    background-image: linear-gradient(-180deg, rgba(73,155,234,1) 0,rgba(32,124,229,1) 100%);
+    box-shadow: 0 7px 29px 0 rgba(73,155,234,0.4);
+    margin-right: 10px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 15px;
 }
 
 a.download strong {
@@ -84,16 +98,17 @@ a.download strong {
 	font-size: 16px;
 }
 
-a.download em {
+p.soon {
+	margin: 5px 0;
+}
+
+p.soon em {
 	display: block;
-	font-size: 10px;
+	font-size: 12px;
 	opacity: 0.8;
 }
 
-a.download:hover {
-	color: #0651AB;
-	border-color: #0651AB;
-}
+
 
 p {
 	font-size: 14px;
@@ -103,24 +118,45 @@ p {
 h2 {
 	font-weight: normal;
 	padding: 0 10px;
-	text-align: center;
 }
 
 article {
-	width: 60%;
-	margin: 20px auto;
+}
+
+#features {
+	margin-right: -2%;
+	width: 75%;
+	margin: 40px auto;
 	overflow: hidden;
 	font-size: 14px;
 	text-align: left;
 }
 
+.feature {
+	float: left;
+	width: 30%;
+	margin-right: 3%;
+	height: 200px;
+	overflow: hidden;
+	box-sizing: border-box;
+	padding-left: 58px;
+	position: relative;
+}
+
+.feature h2 {
+	padding: 0;
+	margin: 0 0 5px 0;
+}
+
+.feature img {
+	position: absolute;
+	top: 5px;
+	left: 0;
+}
+
 article div {
 	float: left;
 	width: 45%;
-}
-
-article img {
-	max-width: 100%;
 }
 
 article div:nth-child(2) {
@@ -163,16 +199,7 @@ td code {
 .policy p {
 	text-align: left;
 }
-video {
-	width: 75%;
-	max-width: 1044px;
-	display: block;
-	margin: -60px auto 25px auto;
-	vertical-align: middle;
-	background: #111;
-	border-radius: 2px;
-	box-shadow: 1px 1px 10px rgba(0,0,0,0.6);
-}
+
 
 .center {
 	text-align: center;
