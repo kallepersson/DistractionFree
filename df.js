@@ -204,10 +204,11 @@
 
   <div class="goog-menuitem" role="option" id="df-mi-exit" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Exit</div></div>
   <div class="goog-menuitem" role="option" id="df-mi-zoom" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Set Zoom</div></div>
+  <div class="goog-menuitem" role="option" id="df-mi-fullscreen" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Enter Full Screen</div></div>
   <div class="goog-menuseparator" role="separator" aria-disabled="true" id=":1n" style="user-select: none;"></div>
-  <div class="goog-menuitem" role="option" id="df-mi-default" data-theme="default" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Default mode</div></div>
-  <div class="goog-menuitem" role="option" id="df-mi-dark" data-theme="dark" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Dark mode</div></div>
-  <div class="goog-menuitem" role="option" id="df-mi-sepia" data-theme="sepia" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Sepia mode</div></div>
+  <div class="goog-menuitem" role="option" id="df-mi-default" data-theme="default" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Default Mode</div></div>
+  <div class="goog-menuitem" role="option" id="df-mi-dark" data-theme="dark" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Dark Mode</div></div>
+  <div class="goog-menuitem" role="option" id="df-mi-sepia" data-theme="sepia" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Sepia Mode</div></div>
   `;
 
   _menu.querySelector("#df-mi-zoom").addEventListener("click", openZoomMenu);
@@ -215,6 +216,7 @@
   _menu.querySelector("#df-mi-default").addEventListener("click", handleThemeMenuItemClick);
   _menu.querySelector("#df-mi-dark").addEventListener("click", handleThemeMenuItemClick);
   _menu.querySelector("#df-mi-sepia").addEventListener("click", handleThemeMenuItemClick);
+  _menu.querySelector("#df-mi-fullscreen").addEventListener("click", toggleFullScreen);
 
   var _enterModeButton = document.createElement("div");
   _toolbarButtonContainer.appendChild(_enterModeButton);
@@ -342,12 +344,21 @@
     }
   }
 
+  function toggleFullScreen() {
+    if (document.webkitFullscreenElement || document.mozFullScreenElement) {
+      exitFullScreen();
+    } else if (!document.webkitFullscreenElement && !document.mozFullScreenElement) {
+      enterFullScreen();
+    }
+  }
+
   function enterFullScreen() {
     if (document.body.webkitRequestFullScreen) {
       document.body.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
     } else if (document.body.mozRequestFullScreen) {
       document.body.mozRequestFullScreen();
     }
+    _menu.querySelector("#df-mi-fullscreen .goog-menuitem-content").innerText = "Exit Full Screen";
   }
 
   function exitFullScreen() {
@@ -356,6 +367,7 @@
     } else if (document.mozCancelFullScreen) {
       document.mozCancelFullScreen();
     } 
+    _menu.querySelector("#df-mi-fullscreen .goog-menuitem-content").innerText = "Enter Full Screen";
   }
   
   document.addEventListener("DOMContentLoaded", handleOnLoad);
