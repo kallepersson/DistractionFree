@@ -5,4 +5,5 @@ while sleep 1; do
 	cp df.js ./Firefox/firefox-df.js;
 	cp -r img ./Firefox/
 	cp -r img ./Chrome/
+	cp img/icon-128.png ./DistractionFree.safariextension/Icon.png
 done
