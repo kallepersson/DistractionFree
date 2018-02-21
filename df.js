@@ -182,6 +182,8 @@
     }
   `;
 
+  const _printModeElementId = ":8g";
+
   var _containerSelector = ".docs-titlebar-badges"
   var _starSelector = ".docs-star-container"
   var _theme = "default";
@@ -258,6 +260,10 @@
   }
 
   function uncheckMenuItem(element) {
+    if (!element) {
+      return;
+    }
+
     if (!element.classList.contains("goog-option-selected")) {
       return;
     }
@@ -265,6 +271,9 @@
   }
 
   function clickInterfaceElement(element) {
+    if (!element) {
+      return;
+    }
     var downEvent = document.createEvent("MouseEvents");
     downEvent.initEvent ("mousedown", true, true);
     var upEvent = document.createEvent("MouseEvents");
@@ -290,7 +299,7 @@
 
   function enterMode() {
     // Uncheck "Print Mode" if not already unchecked
-    uncheckMenuItem($i(":8g"));
+    uncheckMenuItem($i(_printModeElementId));
     document.head.appendChild(_styleElement);
     document.body.appendChild(_menuButtonElement);
     document.body.appendChild(_menu);
