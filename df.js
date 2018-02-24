@@ -1,17 +1,16 @@
 (function() {
 
   const _css = `
-
     body:-webkit-full-screen {
       width: 100%;
       height: 100%;
     }
 
-    .kix-document-top-shadow-inner, #docs-instant-button-bubble { 
+    .df-enabled .kix-document-top-shadow-inner, #docs-instant-button-bubble { 
       display: none;
     }
 
-    .docs-slidingdialog-holder {
+    .df-enabled .docs-slidingdialog-holder {
       z-index: 1000;
     }
 
@@ -22,6 +21,11 @@
     }
 
     #df-menu-button {
+      display: none;
+    }
+
+    .df-enabled #df-menu-button {
+      display: block;
       position: fixed;
       font-family: arial, sans-serif;
       top: 0;
@@ -36,9 +40,9 @@
       color: #000;
       outline: 0;
     }
-    
+
     #df-menu-button:hover {
-     opacity: 0.5;
+      opacity: 0.5;
     }
 
     #df-menu .goog-menuitem-content {
@@ -49,19 +53,27 @@
       background: #eee;
     }
 
-    #docs-chrome,
-    #kix-ruler,
-    .docs-explore-widget,
-    .docs-df-hidemenus .goog-menu-vertical {
+    .df-enabled #docs-chrome,
+    .df-enabled #kix-horizontal-ruler,
+    .df-enabled .docs-explore-widget {
      pointer-events: none;
      opacity: 0;
     }
 
-    #docs-chrome {
+    .docs-df-hidemenus .goog-menu {
+      opacity: 0.0 !important;
+    }
+
+    .df-enabled #docs-chrome {
       display: none;
     }
 
     .gdocs-df-fade {
+      display: none;
+    }
+
+    .df-enabled .gdocs-df-fade {
+     display: block;
      position: fixed;
      top: 0;
      left: 0;
@@ -74,109 +86,109 @@
      pointer-events:none;
     }
 
-    .kix-page-compact::before {
+    .df-enabled .kix-page-compact::before {
      border: 0;
     }
 
-    #docs-chrome,
-    #docs-editor,
-    .kix-page,
-    .docs-ui-unprintable,
-    .kix-page-content-wrapper {
+    .df-enabled #docs-chrome,
+    .df-enabled #docs-editor,
+    .df-enabled .kix-page,
+    .df-enabled .docs-ui-unprintable,
+    .df-enabled .kix-page-content-wrapper {
      background: transparent!important;
     }
 
-    .kix-commentoverlayrenderer-highlighted {
+    .df-enabled .kix-commentoverlayrenderer-highlighted {
       background: #ffe168!important;
     }
 
-    .kix-paginateddocumentplugin-compact-mode,
-    .kix-page-paginated,
-    .kik-page {
+    .df-enabled .kix-paginateddocumentplugin-compact-mode,
+    .df-enabled .kix-page-paginated,
+    .df-enabled .kik-page {
      box-shadow: none!important;
-
     }
 
     /** DEFAULT **/
 
-    .df-default #docs-editor-container {
+    .df-enabled.df-default #docs-editor-container {
      background: #eee!important;
     }
 
-    .df-default #df-menu-button {
+    .df-enabled.df-default #df-menu-button {
      color: #000!important;
     }
 
-    .df-default .gdocs-df-fade {
+    .df-enabled.df-default .gdocs-df-fade {
      background: -webkit-linear-gradient(top, rgba(238,238,238,1) 85%, rgba(238,238,238,0) 100%);
 
     }
-    .df-default .kix-selection-overlay {
+    .df-enabled.df-default .kix-selection-overlay {
       background: #76a7fa!important;
       border-color: #76a7fa!important;
     }
 
     /** DARK **/
 
-    .df-dark ::-webkit-scrollbar-thumb {
+    .df-enabled.df-dark ::-webkit-scrollbar-thumb {
       background-color: rgba(255,255,255,.2);
     }
 
-    .df-dark #docs-editor-container {
+    .df-enabled.df-dark #docs-editor-container {
      background: #000!important;
 
     }
 
-    .df-dark .kix-cursor-caret {
+    .df-enabled.df-dark .kix-cursor-caret {
       border-color: #fff!important;
     }
 
-    .df-dark #df-menu-button,
-    .df-dark .kix-wordhtmlgenerator-word-node,
-    .df-dark .kix-lineview-text-block {
+    .df-enabled.df-dark #df-menu-button,
+    .df-enabled.df-dark .kix-wordhtmlgenerator-word-node,
+    .df-enabled.df-dark .kix-lineview-text-block {
      color: #fff!important;
     }
 
-    .df-dark .gdocs-df-fade {
+    .df-enabled.df-dark .gdocs-df-fade {
      background: -webkit-linear-gradient(top, rgba(0,0,0,1) 85%,rgba(0,0,0,0) 100%);
 
     }
 
-    .df-dark tr, .df-dark td {
+    .df-enabled.df-dark tr,
+    .df-enabled.df-dark td {
      border-color: #fff!important;
 
     }
 
-    .df-dark .kix-selection-overlay {
+    .df-enabled.df-dark .kix-selection-overlay {
       background: #6A6A6A!important;
       border-color: #6A6A6A!important;
     }
 
-    .df-dark .kix-commentoverlayrenderer-highlighted {
+    .df-enabled.df-dark .kix-commentoverlayrenderer-highlighted {
       background: #325e80!important;
     }
 
     /** SEPIA **/
 
-    .df-sepia #docs-editor-container {
+    .df-enabled.df-sepia #docs-editor-container {
      background: rgba(244,236,217,1)!important;
 
     }
-    .df-sepia #df-menu-button,
-    .df-sepia .kix-wordhtmlgenerator-word-node,
-    .df-sepia .goog-inline-block kix-lineview-text-block {
+    .df-enabled.df-sepia #df-menu-button,
+    .df-enabled.df-sepia .kix-wordhtmlgenerator-word-node,
+    .df-enabled.df-sepia .goog-inline-block kix-lineview-text-block {
      color: #644F48!important;
     }
 
-    .df-sepia .kix-cursor-caret {
+    .df-enabled.df-sepia .kix-cursor-caret {
       border-color: #644F48!important;
     }
 
-    .df-sepia .gdocs-df-fade {
+    .df-enabled.df-sepia .gdocs-df-fade {
      background: -webkit-linear-gradient(top, rgba(244,236,217,1) 85%,rgba(244,236,217,0) 100%);
     }
 
-    .df-sepia .kix-selection-overlay {
+    .df-enabled.df-sepia .kix-selection-overlay {
       background: #F8E71C!important;
       border-color: #F8E71C!important;
     }
@@ -206,7 +218,7 @@
 
   <div class="goog-menuitem" role="option" id="df-mi-exit" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Exit</div></div>
   <div class="goog-menuitem" role="option" id="df-mi-zoom" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Set Zoom</div></div>
-  <div class="goog-menuitem" role="option" id="df-mi-fullscreen" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Enter Full Screen</div></div>
+  <div class="goog-menuitem" role="option" id="df-mi-fullscreen" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Toggle Full Screen</div></div>
   <div class="goog-menuseparator" role="separator" aria-disabled="true" id=":1n" style="user-select: none;"></div>
   <div class="goog-menuitem" role="option" id="df-mi-default" data-theme="default" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Default Mode</div></div>
   <div class="goog-menuitem" role="option" id="df-mi-dark" data-theme="dark" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Dark Mode</div></div>
@@ -299,22 +311,41 @@
 
   function enterMode() {
     // Uncheck "Print Mode" if not already unchecked
-    uncheckMenuItem($i(_printModeElementId));
-    document.head.appendChild(_styleElement);
-    document.body.appendChild(_menuButtonElement);
-    document.body.appendChild(_menu);
-    document.querySelector(".kix-appview-editor").style.height = "100vh";
-    forceRelayout();
+    document.body.classList.add("docs-df-hidemenus");
+    clickInterfaceElement($i("docs-view-menu"));
+    let menuElements = document.querySelectorAll(".goog-menu");
+    window.setTimeout(function() {
+      let checkBox;
+      menuElements.forEach(function(menuElement) {
+        let display = getComputedStyle(menuElement).display;
+        if (display != "none") {
+          checkBox = menuElement.querySelector(".goog-menuitem.apps-menuitem.goog-option:first-child");
+        }
+      })
+      if (checkBox) {
+        // For some reason this is the only way to make it work
+        uncheckMenuItem(checkBox);
+        uncheckMenuItem(checkBox);
+        document.body.classList.add("df-enabled");
+        document.body.appendChild(_menuButtonElement);
+        document.body.appendChild(_menu);
+        document.querySelector(".kix-appview-editor").style.height = "100vh";
+        document.body.classList.remove("docs-df-hidemenus");
+        clickInterfaceElement(document.body);
+        forceRelayout();
+      }
+    }, 100);
   }
 
   function exitMode() {
-    document.head.removeChild(_styleElement);
+    document.body.classList.remove("df-enabled");
     _menuButtonElement.parentElement.removeChild(_menuButtonElement);
     _menu.parentElement.removeChild(_menu);
     forceRelayout();
   }
 
   function handleOnLoad() {
+    document.head.appendChild(_styleElement);
     document.body.appendChild(_fadeElement);
     document.body.addEventListener("click", closeMenu);
     let containerElement = document.querySelector(_containerSelector);
@@ -367,7 +398,6 @@
     } else if (document.body.mozRequestFullScreen) {
       document.body.mozRequestFullScreen();
     }
-    _menu.querySelector("#df-mi-fullscreen .goog-menuitem-content").innerText = "Exit Full Screen";
   }
 
   function exitFullScreen() {
@@ -376,7 +406,6 @@
     } else if (document.mozCancelFullScreen) {
       document.mozCancelFullScreen();
     } 
-    _menu.querySelector("#df-mi-fullscreen .goog-menuitem-content").innerText = "Enter Full Screen";
   }
   
   document.addEventListener("DOMContentLoaded", handleOnLoad);
