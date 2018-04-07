@@ -187,6 +187,26 @@
       background: #325e80!important;
     }
 
+    .df-enabled.df-dark .goog-menu {
+      background-color: #111;
+    }
+
+    .df-enabled.df-dark .goog-menuitem:hover {
+      color: #000;
+    }
+
+    .df-enabled.df-dark .goog-menuitem:hover .docs-icon-img-container {
+      filter: invert(0%);
+    }
+
+    .df-enabled.df-dark .docs-icon-img-container {
+      filter: invert(100%);
+    }
+
+    .df-enabled.df-dark .goog-menuitem {
+      color: #ccc;
+    }
+
     /** SEPIA **/
 
     .df-enabled.df-sepia #docs-editor-container {
