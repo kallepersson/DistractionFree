@@ -232,7 +232,7 @@
   var _menuButtonElement = document.createElement("button");
   _menuButtonElement.id = "df-menu-button"
   _menuButtonElement.innerText = "▣";
-  _menuButtonElement.addEventListener("click", openMenu);
+  _menuButtonElement.addEventListener("click", toggleMenu);
 
   var _menu = document.createElement("div");
   _menu.id = "df-menu";
@@ -283,8 +283,8 @@
   var _fadeElement = document.createElement("div");
   _fadeElement.className = "gdocs-df-fade"
 
-  function openMenu(evt) {
-    _menu.style.display = "block";
+  function toggleMenu(evt) {
+    _menu.style.display = _menu.style.display == "block" ? "none" : "block";
   }
 
   function closeMenu(evt) {
