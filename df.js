@@ -24,6 +24,28 @@
       display: none;
     }
 
+    .df-menuitem-theme::before {
+      display: block;
+      content: "";
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      top: 7px;
+      left: 15px;
+      border-radius: 2px;
+      border: 1px solid #111;
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
+    }
+
+    .df-menuitem-theme {
+      text-indent: 15px;
+    }
+
+    #df-mi-default::before { background-color: #eee; }
+    #df-mi-paper::before { background-color: #fff; }
+    #df-mi-dark::before { background-color: #222; }
+    #df-mi-sepia::before { background-color: rgba(244,236,217,1); }
+
     .df-enabled #df-menu-button {
       display: block;
       position: fixed;
@@ -195,6 +217,12 @@
       color: #000;
     }
 
+
+    .df-enabled.df-dark .df-menuitem-theme::before {
+      border: 1px solid #eee;
+      box-shadow: inset 0 0 0 1px rgba(0,0,0,0.5);
+    }
+
     .df-enabled.df-dark .goog-menuitem:hover .docs-icon-img-container {
       filter: invert(0%);
     }
@@ -264,7 +292,7 @@
   <div class="goog-menuseparator" role="separator" aria-disabled="true" id=":1n" style="user-select: none;"></div>
   `;
   _themes.forEach(function(theme) {
-    menuHTML += `<div class="goog-menuitem" role="option" id="df-mi-${theme.key}" data-theme="${theme.key}" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">${theme.title}</div></div>`;
+    menuHTML += `<div class="goog-menuitem df-menuitem-theme" role="option" id="df-mi-${theme.key}" data-theme="${theme.key}" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">${theme.title}</div></div>`;
   })
   menuHTML += `
   <div class="goog-menuseparator" role="separator" aria-disabled="true" id=":1n" style="user-select: none;"></div>
