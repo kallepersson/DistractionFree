@@ -246,7 +246,12 @@
   _themes.forEach(function(theme) {
     menuHTML += `<div class="goog-menuitem" role="option" id="df-mi-${theme.key}" data-theme="${theme.key}" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">${theme.title}</div></div>`;
   })
+  menuHTML += `
+  <div class="goog-menuseparator" role="separator" aria-disabled="true" id=":1n" style="user-select: none;"></div>
+  <div class="goog-menuitem" role="option" id="df-mi-feedback" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Submit feedback</div></div>
+  `;
   _menu.innerHTML = menuHTML;
+  _menu.querySelector("#df-mi-feedback").addEventListener("click", openFeedbackForm);
   _menu.querySelector("#df-mi-zoom").addEventListener("click", openZoomMenu);
   _menu.querySelector("#df-mi-exit").addEventListener("click", exitMode);
   _themes.forEach(function(theme) {
@@ -404,6 +409,10 @@
       menu.style.left = "5px";
       menu.style.top = "5px";
     }
+  }
+
+  function openFeedbackForm(evt) {
+    window.open("https://goo.gl/forms/r2Kf8bYa15yE4Tzm1");
   }
 
   function handleKeyDown(evt) {
