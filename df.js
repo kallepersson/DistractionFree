@@ -337,6 +337,7 @@
   }
 
   function enterMode() {
+    localStorage.setItem(extractURL(), true);
     // Uncheck "Print Mode" if not already unchecked
     attempt(function() {
       document.body.classList.add("docs-df-hidemenus");
@@ -395,6 +396,7 @@
     _menuButtonElement.parentElement.removeChild(_menuButtonElement);
     _menu.parentElement.removeChild(_menu);
     forceRelayout();
+    localStorage.removeItem(extractURL());
   }
 
   function handleOnLoad() {
@@ -410,10 +412,16 @@
     }
 
     setTheme(localStorage.getItem("df-theme"));
+    if (localStorage.getItem(extractURL())) {
+      enterMode();
+    }
+  }
+
+  function extractURL() {
+    return window.location.href.split("#")[0];
   }
 
   function setTheme(theme) {
-    console.log(theme);
     if (!theme) {
       theme = "default";
     }
