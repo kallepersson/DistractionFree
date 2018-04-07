@@ -338,30 +338,56 @@
 
   function enterMode() {
     // Uncheck "Print Mode" if not already unchecked
-    document.body.classList.add("docs-df-hidemenus");
-    clickInterfaceElement($i("docs-view-menu"));
-    let menuElements = document.querySelectorAll(".goog-menu");
-    window.setTimeout(function() {
-      let checkBox;
+    attempt(function() {
+      document.body.classList.add("docs-df-hidemenus");
+      clickInterfaceElement($i("docs-view-menu"));
+      let menuElements = document.querySelectorAll(".goog-menu");
+      let checkbox;
       menuElements.forEach(function(menuElement) {
         let display = getComputedStyle(menuElement).display;
         if (display != "none") {
-          checkBox = menuElement.querySelector(".goog-menuitem.apps-menuitem.goog-option:first-child");
+          checkbox = menuElement.querySelector(".goog-menuitem.apps-menuitem.goog-option:first-child");
         }
       })
-      if (checkBox) {
-        // For some reason this is the only way to make it work
-        uncheckMenuItem(checkBox);
-        uncheckMenuItem(checkBox);
-        document.body.classList.add("df-enabled");
-        document.body.appendChild(_menuButtonElement);
-        document.body.appendChild(_menu);
-        document.querySelector(".kix-appview-editor").style.height = "100vh";
-        document.body.classList.remove("docs-df-hidemenus");
-        clickInterfaceElement(document.body);
-        forceRelayout();
+      return checkbox;
+    }, function(checkbox) {
+    // For some reason this is the only way to make it work
+      uncheckMenuItem(checkbox);
+      uncheckMenuItem(checkbox);
+      document.body.classList.add("df-enabled");
+      document.body.appendChild(_menuButtonElement);
+      document.body.appendChild(_menu);
+      document.querySelector(".kix-appview-editor").style.height = "100vh";
+      document.body.classList.remove("docs-df-hidemenus");
+      clickInterfaceElement(document.body);
+      forceRelayout();
+    }, function() {
+      // Failure
+    });
+  }
+
+  function attempt(lookup, success, failure, maxTries, ms) {
+    if (!maxTries) {
+      maxTries = 50;
+    }
+    if (!ms) {
+      ms = 100;
+    }
+    var numberTries = 0;
+    var fn = function() {
+      var result = lookup();
+      if (result) {
+        success(result);
+      } else {
+        if (numberTries < maxTries) {
+          numberTries++;
+          window.setTimeout(fn, ms);
+        } else {
+          failure();
+        }
       }
-    }, 100);
+    }
+    window.setTimeout(fn, ms);
   }
 
   function exitMode() {
