@@ -127,6 +127,25 @@
       border-color: #76a7fa!important;
     }
 
+    /** PAPER **/
+
+    .df-enabled.df-paper #docs-editor-container {
+     background: #fff!important;
+    }
+
+    .df-enabled.df-paper #df-menu-button {
+     color: #000!important;
+    }
+
+    .df-enabled.df-paper .gdocs-df-fade {
+     background: -webkit-linear-gradient(top, rgba(fff,fff,fff,1) 85%, rgba(fff,fff,fff,0) 100%);
+
+    }
+    .df-enabled.df-paper .kix-selection-overlay {
+      background: #76a7fa!important;
+      border-color: #76a7fa!important;
+    }
+
     /** DARK **/
 
     .df-enabled.df-dark ::-webkit-scrollbar-thumb {
@@ -194,8 +213,12 @@
     }
   `;
 
-  const _printModeElementId = ":8g";
-
+  const _themes = [
+    {key:"default", title:"Default theme"},
+    {key:"paper", title:"Paper"},
+    {key:"dark", title:"Dark"},
+    {key:"sepia", title:"Sepia"}
+  ];
   var _containerSelector = ".docs-titlebar-badges"
   var _starSelector = ".docs-star-container"
   var _theme = "default";
@@ -214,22 +237,21 @@
   var _menu = document.createElement("div");
   _menu.id = "df-menu";
   _menu.className = "goog-menu goog-menu-vertical goog-menu-noicon goog-menu-noaccel";
-  _menu.innerHTML = `
-
+  var menuHTML = `
   <div class="goog-menuitem" role="option" id="df-mi-exit" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Exit</div></div>
   <div class="goog-menuitem" role="option" id="df-mi-zoom" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Set Zoom</div></div>
   <div class="goog-menuitem" role="option" id="df-mi-fullscreen" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Toggle Full Screen</div></div>
   <div class="goog-menuseparator" role="separator" aria-disabled="true" id=":1n" style="user-select: none;"></div>
-  <div class="goog-menuitem" role="option" id="df-mi-default" data-theme="default" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Default Mode</div></div>
-  <div class="goog-menuitem" role="option" id="df-mi-dark" data-theme="dark" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Dark Mode</div></div>
-  <div class="goog-menuitem" role="option" id="df-mi-sepia" data-theme="sepia" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Sepia Mode</div></div>
   `;
-
+  _themes.forEach(function(theme) {
+    menuHTML += `<div class="goog-menuitem" role="option" id="df-mi-${theme.key}" data-theme="${theme.key}" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">${theme.title}</div></div>`;
+  })
+  _menu.innerHTML = menuHTML;
   _menu.querySelector("#df-mi-zoom").addEventListener("click", openZoomMenu);
   _menu.querySelector("#df-mi-exit").addEventListener("click", exitMode);
-  _menu.querySelector("#df-mi-default").addEventListener("click", handleThemeMenuItemClick);
-  _menu.querySelector("#df-mi-dark").addEventListener("click", handleThemeMenuItemClick);
-  _menu.querySelector("#df-mi-sepia").addEventListener("click", handleThemeMenuItemClick);
+  _themes.forEach(function(theme) {
+    _menu.querySelector("#df-mi-"+theme.key).addEventListener("click", handleThemeMenuItemClick);
+  })
   _menu.querySelector("#df-mi-fullscreen").addEventListener("click", toggleFullScreen);
 
   var _enterModeButton = document.createElement("div");
@@ -356,12 +378,18 @@
       }, 500)
     }
 
-    setTheme(localStorage.getItem("df-theme", "default"));
+    setTheme(localStorage.getItem("df-theme"));
   }
 
   function setTheme(theme) {
+    console.log(theme);
+    if (!theme) {
+      theme = "default";
+    }
     _theme = theme;
-    document.body.classList.remove("df-default", "df-dark", "df-sepia");
+    _themes.forEach(function(theme) {
+      document.body.classList.remove("df-" + theme.key);
+    });
     document.body.classList.add("df-" + theme)
     localStorage.setItem("df-theme", theme);
   }
