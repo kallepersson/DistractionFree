@@ -3,7 +3,7 @@
   "description" : "The distraction free mode (▣) for Google Docs hides all controls and buttons and lets you focus on the writing.",
   "homepage_url": "http://kallepersson.se/distractionfree",
   "author": "Kalle Persson",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "icons": {
     "16": "img/icon-16.png",
     "19": "img/icon-19.png",
