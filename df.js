@@ -45,6 +45,7 @@
     #df-mi-paper::before { background-color: #fff; }
     #df-mi-dark::before { background-color: #222; }
     #df-mi-sepia::before { background-color: rgba(244,236,217,1); }
+    #df-mi-sepia::before { background-color: #33353b; }
 
     .df-enabled #df-menu-button {
       display: block;
@@ -217,7 +218,6 @@
       color: #000;
     }
 
-
     .df-enabled.df-dark .df-menuitem-theme::before {
       border: 1px solid #eee;
       box-shadow: inset 0 0 0 1px rgba(0,0,0,0.5);
@@ -238,7 +238,7 @@
     /** SEPIA **/
 
     .df-enabled.df-sepia #docs-editor-container {
-     background: rgba(244,236,217,1)!important;
+     background: rgb(244,236,217)!important;
 
     }
     .df-enabled.df-sepia #df-menu-button,
@@ -256,16 +256,43 @@
     }
 
     .df-enabled.df-sepia .kix-selection-overlay {
-      background: #F8E71C!important;
-      border-color: #F8E71C!important;
+      background: #62aed2!important;
+      border-color: #62aed2!important;
     }
+
+    /** MIDNIGHT **/
+
+    .df-enabled.df-midnight #docs-editor-container {
+     background: #33353b!important;
+
+    }
+    .df-enabled.df-midnight #df-menu-button,
+    .df-enabled.df-midnight .kix-wordhtmlgenerator-word-node,
+    .df-enabled.df-midnight .goog-inline-block kix-lineview-text-block {
+     color: #aaaaaa!important;
+    }
+
+    .df-enabled.df-midnight .kix-cursor-caret {
+      border-color: #aaaaaa!important;
+    }
+
+    .df-enabled.df-midnight .gdocs-df-fade {
+     background: -webkit-linear-gradient(top, rgba(51,53,59,1) 85%,rgba(51,53,59,0) 100%);
+    }
+
+    .df-enabled.df-midnight .kix-selection-overlay {
+      background: rgb(81,83,89)!important;
+      border-color: rgb(81,83,89)!important;
+    }
+
   `;
 
   const _themes = [
     {key:"default", title:"Default theme"},
     {key:"paper", title:"Paper"},
     {key:"dark", title:"Dark"},
-    {key:"sepia", title:"Sepia"}
+    {key:"sepia", title:"Sepia"},
+    {key:"midnight", title:"Midnight"}
   ];
   var _containerSelector = ".docs-titlebar-badges"
   var _starSelector = ".docs-star-container"
