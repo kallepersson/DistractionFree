@@ -45,7 +45,7 @@
     #df-mi-paper::before { background-color: #fff; }
     #df-mi-dark::before { background-color: #222; }
     #df-mi-sepia::before { background-color: rgba(244,236,217,1); }
-    #df-mi-sepia::before { background-color: #33353b; }
+    #df-mi-midnight::before { background-color: #33353b; }
 
     .df-enabled #df-menu-button {
       display: block;
@@ -181,13 +181,13 @@
     }
 
     .df-enabled.df-dark .kix-cursor-caret {
-      border-color: #fff!important;
+      border-color: #ddd!important;
     }
 
     .df-enabled.df-dark #df-menu-button,
     .df-enabled.df-dark .kix-wordhtmlgenerator-word-node,
     .df-enabled.df-dark .kix-lineview-text-block {
-     color: #fff!important;
+     color: #ddd!important;
     }
 
     .df-enabled.df-dark .gdocs-df-fade {
@@ -290,9 +290,9 @@
   const _themes = [
     {key:"default", title:"Default theme"},
     {key:"paper", title:"Paper"},
-    {key:"dark", title:"Dark"},
     {key:"sepia", title:"Sepia"},
-    {key:"midnight", title:"Midnight"}
+    {key:"midnight", title:"Midnight"},
+    {key:"dark", title:"Dark"},
   ];
   var _containerSelector = ".docs-titlebar-badges"
   var _starSelector = ".docs-star-container"

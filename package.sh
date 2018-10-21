@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir -p build
 cd ./Chrome
 zip -r -FS ../build/chrome-release.zip ./*.js ./*.json ./img
 
