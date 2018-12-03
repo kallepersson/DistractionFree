@@ -176,18 +176,18 @@
     }
 
     .df-enabled.df-dark #docs-editor-container {
-     background: #000!important;
+     background: #282828!important;
 
     }
 
     .df-enabled.df-dark .kix-cursor-caret {
-      border-color: #ddd!important;
+      border-color: #66FF66!important;
     }
 
     .df-enabled.df-dark #df-menu-button,
     .df-enabled.df-dark .kix-wordhtmlgenerator-word-node,
     .df-enabled.df-dark .kix-lineview-text-block {
-     color: #ddd!important;
+     color: #66FF66!important;
     }
 
     .df-enabled.df-dark .gdocs-df-fade {
