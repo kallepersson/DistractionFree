@@ -116,7 +116,7 @@
     .df-enabled #docs-chrome,
     .df-enabled #docs-editor,
     .df-enabled .kix-page,
-    .df-enabled .docs-ui-unprintable,
+    .df-enabled .docs-ui-unprintable:not(.kix-findandreplaceoverlayprovider-match),
     .df-enabled .kix-page-content-wrapper {
      background: transparent!important;
     }
