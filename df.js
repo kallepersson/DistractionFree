@@ -91,6 +91,18 @@
       display: none;
     }
 
+    .df-enabled .docs-navigation-tab-button {
+      display: none;
+    }
+
+    .df-enabled .docs-companion-app-switcher-container {
+      display: none;
+    }
+
+    .df-enabled #docs-editor.companion-enabled {
+      width: 100% !important;
+    }
+
     .gdocs-df-fade {
       display: none;
     }
@@ -294,7 +306,7 @@
     {key:"midnight", title:"Midnight"},
     {key:"dark", title:"Dark"},
   ];
-  var _containerSelector = ".docs-titlebar-badges"
+  var _containerSelector = "#docs-titlebar-edit-badges"
   var _starSelector = ".docs-star-container"
   var _theme = "default";
 
