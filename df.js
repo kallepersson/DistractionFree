@@ -238,7 +238,7 @@
      color: #ddd!important;
     }
 
-    .df-enabled.df-dark .sketchy-text-content-text text {
+    .df-enabled.df-dark #speakernotes .sketchy-text-content-text text {
      fill: #ddd!important; 
     }
 
@@ -309,7 +309,7 @@
       border-color: rgba(185,168,128,0.4)
     }
 
-    .df-enabled.df-sepia .sketchy-text-content-text text {
+    .df-enabled.df-sepia #speakernotes .sketchy-text-content-text text {
      fill: #644F48!important; 
     }
 
@@ -353,7 +353,7 @@
      color: #aaaaaa!important;
     }
 
-    .df-enabled.df-midnight .sketchy-text-content-text text {
+    .df-enabled.df-midnight #speakernotes .sketchy-text-content-text text {
      fill: #aaaaaa!important; 
     }
 
