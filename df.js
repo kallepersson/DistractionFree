@@ -414,9 +414,11 @@
   _menu.id = "df-menu";
   _menu.className = "goog-menu goog-menu-vertical goog-menu-noicon goog-menu-noaccel";
   var menuHTML = `
-  <div class="goog-menuitem" role="option" id="df-mi-exit" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Exit</div></div>
-  <div class="goog-menuitem" role="option" id="df-mi-zoom" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Set Zoom</div></div>
-  <div class="goog-menuitem" role="option" id="df-mi-fullscreen" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Toggle Full Screen</div></div>
+  <div class="goog-menuitem" role="option" id="df-mi-exit" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Exit</div></div>`
+  if (_isDocsApp) {
+    menuHTML += `<div class="goog-menuitem" role="option" id="df-mi-zoom" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Set Zoom</div></div>`;
+  }
+  menuHTML += `<div class="goog-menuitem" role="option" id="df-mi-fullscreen" style="user-select: none;"><div class="goog-menuitem-content" style="user-select: none;">Toggle Full Screen</div></div>
   <div class="goog-menuseparator" role="separator" aria-disabled="true" id=":1n" style="user-select: none;"></div>
   `;
   _themes.forEach(function(theme) {
@@ -428,7 +430,9 @@
   `;
   _menu.innerHTML = menuHTML;
   _menu.querySelector("#df-mi-feedback").addEventListener("click", openFeedbackForm);
-  _menu.querySelector("#df-mi-zoom").addEventListener("click", openZoomMenu);
+  if (_isDocsApp) {
+    _menu.querySelector("#df-mi-zoom").addEventListener("click", openZoomMenu);
+  }
   _menu.querySelector("#df-mi-exit").addEventListener("click", exitMode);
   _themes.forEach(function(theme) {
     _menu.querySelector("#df-mi-"+theme.key).addEventListener("click", handleThemeMenuItemClick);
