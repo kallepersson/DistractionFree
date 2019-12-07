@@ -30,7 +30,7 @@
       width: 10px;
       height: 10px;
       position: absolute;
-      top: 7px;
+      top: 10px;
       left: 15px;
       border-radius: 2px;
       border: 1px solid #111;
@@ -143,10 +143,36 @@
      box-shadow: none!important;
     }
 
-    /** DEFAULT **/
+    /** SLIDES **/
+    .df-enabled.df-slides .two-panel-layout .filmstrip,
+    .df-enabled.df-slides #sketchy-horizontal-ruler,
+    .df-enabled.df-slides #sketchy-vertical-ruler,
+    .df-enabled.df-slides .speakernotes-dragger-thumb {
+      display: none;
+    }
 
-    .df-enabled.df-default #docs-editor-container {
+    .df-enabled.df-slides #speakernotes,
+    .df-enabled.df-slides #speakernotes-dragger {
+      background: transparent!important;
+      border-bottom-width: 0;
+    }
+
+    .df-enabled.df-slides #canvas {
+      border: 0 !important;
+      background-image: none;
+      box-shadow: none !important;
+    }
+
+    /** DEFAULT **/
+    .df-enabled.df-default,
+    .df-enabled.df-default #docs-editor-container,
+    .df-enabled.df-default #workspace-container,
+    .df-enabled.df-default #workspace {
      background: #eee!important;
+    }
+
+    .df-enabled.df-slides #speakernotes-dragger {
+      border-color: rgba(0,0,0,0.4)
     }
 
     .df-enabled.df-default #df-menu-button {
@@ -173,7 +199,7 @@
     }
 
     .df-enabled.df-paper .gdocs-df-fade {
-     background: -webkit-linear-gradient(top, rgba(fff,fff,fff,1) 85%, rgba(fff,fff,fff,0) 100%);
+     background: -webkit-linear-gradient(top, rgba(255,255,255,1) 85%, rgba(255,255,255,0) 100%);
 
     }
     .df-enabled.df-paper .kix-selection-overlay {
@@ -187,19 +213,33 @@
       background-color: rgba(255,255,255,.2);
     }
 
-    .df-enabled.df-dark #docs-editor-container {
-     background: #000!important;
+    .df-enabled.df-dark,
+    .df-enabled.df-dark #docs-editor-container,
+    .df-enabled.df-dark #workspace-container,
+    .df-enabled.df-dark #workspace {
+      background: #000!important;
+    }
 
+    .df-enabled.df-slides.df-dark #speakernotes-dragger {
+      border-color: rgba(255,255,255,0.1)
     }
 
     .df-enabled.df-dark .kix-cursor-caret {
       border-color: #ddd!important;
     }
 
+    .df-enabled.df-dark.df-slides #speakernotes svg rect {
+      fill: #ddd!important;
+    }
+
     .df-enabled.df-dark #df-menu-button,
     .df-enabled.df-dark .kix-wordhtmlgenerator-word-node,
     .df-enabled.df-dark .kix-lineview-text-block {
      color: #ddd!important;
+    }
+
+    .df-enabled.df-dark .sketchy-text-content-text text {
+     fill: #ddd!important; 
     }
 
     .df-enabled.df-dark .kix-lineview-decorations div {
@@ -213,8 +253,7 @@
 
     .df-enabled.df-dark tr,
     .df-enabled.df-dark td {
-     border-color: #fff!important;
-
+      border-color: #fff!important;
     }
 
     .df-enabled.df-dark .kix-selection-overlay {
@@ -253,7 +292,10 @@
 
     /** SEPIA **/
 
-    .df-enabled.df-sepia #docs-editor-container {
+    .df-enabled.df-sepia,
+    .df-enabled.df-sepia #docs-editor-container,
+    .df-enabled.df-sepia #workspace-container,
+    .df-enabled.df-sepia #workspace {
      background: rgb(244,236,217)!important;
 
     }
@@ -263,12 +305,24 @@
      color: #644F48!important;
     }
 
+    .df-enabled.df-slides.df-sepia #speakernotes-dragger {
+      border-color: rgba(185,168,128,0.4)
+    }
+
+    .df-enabled.df-sepia .sketchy-text-content-text text {
+     fill: #644F48!important; 
+    }
+
     .df-enabled.df-sepia .kix-lineview-decorations div {
       border-color: #644F48!important;
     }
 
     .df-enabled.df-sepia .kix-cursor-caret {
       border-color: #644F48!important;
+    }
+
+    .df-enabled.df-sepia.df-slides #speakernotes svg rect {
+      fill: #644F48!important;
     }
 
     .df-enabled.df-sepia .gdocs-df-fade {
@@ -282,14 +336,25 @@
 
     /** MIDNIGHT **/
 
-    .df-enabled.df-midnight #docs-editor-container {
+    .df-enabled.df-midnight,
+    .df-enabled.df-midnight #docs-editor-container,
+    .df-enabled.df-midnight #workspace-container,
+    .df-enabled.df-midnight #workspace {
      background: #33353b!important;
-
     }
+
+    .df-enabled.df-slides.df-midnight #speakernotes-dragger {
+      border-color: rgba(255,255,255,0.1)
+    }
+
     .df-enabled.df-midnight #df-menu-button,
     .df-enabled.df-midnight .kix-wordhtmlgenerator-word-node,
     .df-enabled.df-midnight .goog-inline-block.kix-lineview-text-block {
      color: #aaaaaa!important;
+    }
+
+    .df-enabled.df-midnight .sketchy-text-content-text text {
+     fill: #aaaaaa!important; 
     }
 
     .df-enabled.df-midnight .kix-lineview-decorations div {
@@ -298,6 +363,10 @@
 
     .df-enabled.df-midnight .kix-cursor-caret {
       border-color: #aaaaaa!important;
+    }
+
+    .df-enabled.df-midnight.df-slides #speakernotes svg rect {
+      fill: #aaa!important;
     }
 
     .df-enabled.df-midnight .gdocs-df-fade {
@@ -318,8 +387,16 @@
     {key:"midnight", title:"Midnight"},
     {key:"dark", title:"Dark"},
   ];
-  var _containerSelector = "#docs-titlebar-edit-badges"
-  var _starSelector = ".docs-star-container"
+
+  var _isDocsApp = (window.location.href.indexOf("document") != -1);
+  var _isSlidesApp = (window.location.href.indexOf("presentation") != -1);
+  if (_isDocsApp) {
+    document.body.classList.add("df-docs");
+  } else if (_isSlidesApp) {
+    document.body.classList.add("df-slides");
+  }
+  var _containerSelector = "#docs-titlebar-edit-badges";
+  var _starSelector = ".docs-star-container";
   var _theme = "default";
 
   let _styleElement = document.createElement("style");
@@ -437,33 +514,40 @@
 
   function enterMode() {
     localStorage.setItem(extractURL(), true);
-    // Uncheck "Print Mode" if not already unchecked
-    attempt(function() {
-      document.body.classList.add("docs-df-hidemenus");
-      clickInterfaceElement($i("docs-view-menu"));
-      let menuElements = document.querySelectorAll(".goog-menu");
-      let checkbox;
-      menuElements.forEach(function(menuElement) {
-        let display = getComputedStyle(menuElement).display;
-        if (display != "none") {
-          checkbox = menuElement.querySelector(".goog-menuitem.apps-menuitem.goog-option:first-child");
-        }
-      })
-      return checkbox;
-    }, function(checkbox) {
-    // For some reason this is the only way to make it work
-      uncheckMenuItem(checkbox);
-      uncheckMenuItem(checkbox);
-      document.body.classList.add("df-enabled");
-      document.body.appendChild(_menuButtonElement);
-      document.body.appendChild(_menu);
-      document.querySelector(".kix-appview-editor").style.height = "100vh";
-      document.body.classList.remove("docs-df-hidemenus");
-      clickInterfaceElement(document.body);
-      forceRelayout();
-    }, function() {
-      // Failure
-    });
+    if (_isDocsApp) {
+      // Uncheck "Print Mode" if not already unchecked
+      attempt(function() {
+        document.body.classList.add("docs-df-hidemenus");
+        clickInterfaceElement($i("docs-view-menu"));
+        let menuElements = document.querySelectorAll(".goog-menu");
+        let checkbox;
+        menuElements.forEach(function(menuElement) {
+          let display = getComputedStyle(menuElement).display;
+          if (display != "none") {
+            checkbox = menuElement.querySelector(".goog-menuitem.apps-menuitem.goog-option:first-child");
+          }
+        })
+        return checkbox;
+      }, function(checkbox) {
+      // For some reason this is the only way to make it work
+        uncheckMenuItem(checkbox);
+        uncheckMenuItem(checkbox);
+        document.body.classList.add("df-enabled");
+        document.body.appendChild(_menuButtonElement);
+        document.body.appendChild(_menu);
+        document.querySelector(".kix-appview-editor").style.height = "100vh";
+        document.body.classList.remove("docs-df-hidemenus");
+        clickInterfaceElement(document.body);
+        forceRelayout();
+      }, function() {
+        // Failure
+      });
+    } else if (_isSlidesApp) {
+        document.body.classList.add("df-enabled");
+        document.body.appendChild(_menuButtonElement);
+        document.body.appendChild(_menu);
+        forceRelayout();
+    }
   }
 
   function attempt(lookup, success, failure, maxTries, ms) {
@@ -500,11 +584,13 @@
 
   function handleOnLoad() {
     document.head.appendChild(_styleElement);
-    document.body.appendChild(_fadeElement);
+    if (_isDocsApp) {
+      document.body.appendChild(_fadeElement);
+    }
     document.body.addEventListener("click", closeMenu);
     let containerElement = document.querySelector(_containerSelector);
     let starElement = document.querySelector(_starSelector);
-    if (containerElement && starElement && window.location.href.indexOf("document") != -1) {
+    if (containerElement && starElement && (_isDocsApp || _isSlidesApp)) {
       setTimeout(function() {
         containerElement.insertBefore(_toolbarButtonContainer, starElement.nextSibling);
       }, 500)
