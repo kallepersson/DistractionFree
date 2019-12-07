@@ -1,2 +1,2 @@
 # DistractionFree
-The distraction free mode (▣) for Google Docs hides all controls and buttons and lets you focus on the writing.
+The distraction free mode (▣) for Google Docs and Google Slides hides all controls and buttons and lets you focus on the creation.
