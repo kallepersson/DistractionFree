@@ -76,7 +76,6 @@
       background: #eee;
     }
 
-    .df-enabled #docs-chrome,
     .df-enabled #kix-horizontal-ruler,
     .df-enabled .docs-explore-widget {
      pointer-events: none;
@@ -87,8 +86,10 @@
       opacity: 0.0 !important;
     }
 
-    .df-enabled #docs-chrome {
+    .df-enabled #docs-chrome >:not(#docs-palettes) {
       display: none;
+      pointer-events: none;
+      opacity: 0;
     }
 
     .df-enabled .docs-navigation-tab-button {
