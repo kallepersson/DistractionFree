@@ -395,7 +395,7 @@
   } else if (_isSlidesApp) {
     document.body.classList.add("df-slides");
   }
-  var _containerSelector = "#docs-titlebar-edit-badges";
+  var _containerSelector = ".docs-titlebar-badges";
   var _starSelector = ".docs-star-container";
   var _theme = "default";
 
