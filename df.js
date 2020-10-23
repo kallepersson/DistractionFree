@@ -140,7 +140,9 @@
 
     .df-enabled .kix-paginateddocumentplugin-compact-mode,
     .df-enabled .kix-page-paginated,
-    .df-enabled .kik-page {
+    .df-enabled .kik-page,
+    .df-enabled .kix-page-compact,
+    .df-enabled .kix-page-compact-first {
      box-shadow: none!important;
     }
 
