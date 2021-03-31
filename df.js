@@ -130,6 +130,7 @@
     .df-enabled #docs-editor,
     .df-enabled .kix-page,
     .df-enabled .docs-ui-unprintable,
+    .df-enabled .kix-appview-editor,
     .df-enabled .kix-page-content-wrapper {
      background: transparent!important;
     }
