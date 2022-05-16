@@ -45,7 +45,7 @@
     #df-mi-paper::before { background-color: #fff; }
     #df-mi-dark::before { background-color: #222; }
     #df-mi-sepia::before { background-color: rgba(244,236,217,1); }
-    #df-mi-midnight::before { background-color: #33353b; }
+    #df-mi-midnight::before { background-color: #000; }
 
     .df-enabled #df-menu-button {
       display: block;
@@ -131,8 +131,30 @@
     .df-enabled .kix-page,
     .df-enabled .docs-ui-unprintable,
     .df-enabled .kix-appview-editor,
+    .df-enabled .kix-canvas-tile-content,
     .df-enabled .kix-page-content-wrapper {
      background: transparent!important;
+    }
+
+    .df-enabled .kix-canvas-tile-content svg rect {
+      fill: transparent!important;
+    }
+
+    .df-enabled.df-dark canvas.kix-canvas-tile-content,
+    .df-enabled.df-midnight canvas.kix-canvas-tile-content {
+      filter: invert(1);
+    }
+
+    .df-enabled.df-midnight canvas.kix-canvas-tile-content {
+      opacity: 0.6;
+    }
+
+    .df-enabled .kix-page-paginated .kix-stacked-tile-page-shadow {
+      box-shadow: none!important;
+    }
+
+    .df-enabled .kix-page-canvas-compact-mode {
+      border-top: transparent;
     }
 
     .df-enabled .kix-commentoverlayrenderer-highlighted {
@@ -344,7 +366,11 @@
     .df-enabled.df-midnight #docs-editor-container,
     .df-enabled.df-midnight #workspace-container,
     .df-enabled.df-midnight #workspace {
-     background: #33353b!important;
+     background: #000!important;
+    }
+
+    .df-enabled.df-midnight ::-webkit-scrollbar-thumb {
+      background-color: rgba(255,255,255,.2);
     }
 
     .df-enabled.df-slides.df-midnight #speakernotes-dragger {
@@ -374,7 +400,7 @@
     }
 
     .df-enabled.df-midnight .gdocs-df-fade {
-     background: -webkit-linear-gradient(top, rgba(51,53,59,1) 85%,rgba(51,53,59,0) 100%);
+     background: -webkit-linear-gradient(top, rgba(0,0,0,1) 85%,rgba(0,0,0,0) 100%);
     }
 
     .df-enabled.df-midnight .kix-selection-overlay {
@@ -387,7 +413,7 @@
   const _themes = [
     {key:"default", title:"Default theme"},
     {key:"paper", title:"Paper"},
-    {key:"sepia", title:"Sepia"},
+    // {key:"sepia", title:"Sepia"},
     {key:"midnight", title:"Midnight"},
     {key:"dark", title:"Dark"},
   ];
