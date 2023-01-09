@@ -3,7 +3,7 @@
   "description" : "The distraction free mode (▣) for Google Docs and Google Slides hides all controls and buttons and lets you focus on creation.",
   "homepage_url": "http://flowapps.co/distractionfree",
   "author": "Flowapps.co",
-  "version": "2.1.1",
+  "version": "2.2.0",
   "icons": {
     "16": "img/icon-16.png",
     "19": "img/icon-19.png",
@@ -12,9 +12,9 @@
     "128": "img/icon-128.png",
     "256": "img/icon-256.png"
   },
-  "manifest_version": 2,
+  "manifest_version": 3,
   "background": {
-    "scripts": ["chrome-bg.js"]
+    "service_worker": "chrome-bg.js"
   },
   "content_scripts": [
     {

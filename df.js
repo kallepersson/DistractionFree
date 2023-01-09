@@ -537,17 +537,12 @@
   }
 
   function forceRelayout() {
-    if (typeof browser != "undefined") {
-      browser.runtime.sendMessage({ msg: "forceRelayout" });
-    } else if (typeof chrome != "undefined") {
-      chrome.extension.sendMessage({ msg: "forceRelayout" });
-    } else if (typeof safari != "undefined") {
-      safari.self.tab.dispatchMessage("forceRelayout");
-    } 
+    if (typeof chrome != "undefined") {
+      chrome.runtime.sendMessage("forceRelayout");
+    }
   }
 
   function enterMode() {
-    localStorage.setItem(extractURL(), true);
     if (_isDocsApp) {
       // Uncheck "Print Mode" if not already unchecked
       attempt(function() {
@@ -558,7 +553,7 @@
         menuElements.forEach(function(menuElement) {
           let display = getComputedStyle(menuElement).display;
           if (display != "none") {
-            checkbox = menuElement.querySelector(".goog-menuitem.apps-menuitem.goog-option:first-child");
+            checkbox = menuElement.querySelector("[role=menuitemcheckbox]");
           }
         })
         return checkbox;
@@ -573,6 +568,7 @@
         document.body.classList.remove("docs-df-hidemenus");
         clickInterfaceElement(document.body);
         forceRelayout();
+        localStorage.setItem(extractURL(), true);
       }, function() {
         // Failure
       });
@@ -586,7 +582,7 @@
 
   function attempt(lookup, success, failure, maxTries, ms) {
     if (!maxTries) {
-      maxTries = 50;
+      maxTries = 5;
     }
     if (!ms) {
       ms = 100;
